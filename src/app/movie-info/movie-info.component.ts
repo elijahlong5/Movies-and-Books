@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
+
 import { Movie } from '../models/movie';
 import { MovieService } from '../services/movie.service';
 
@@ -24,7 +25,9 @@ export class MovieInfoComponent implements OnInit {
   }
 
   getMovie(): void {
+    console.log('we here')
     const id = +this.route.snapshot.paramMap.get('id');
+
     this.movieService.getMovie(id)
       .subscribe(movie => this.movie = movie);
   }

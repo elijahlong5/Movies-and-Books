@@ -1,0 +1,48 @@
+.container {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+h2 {
+  font-size: 2em;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.container > nav {
+  border: solid lightblue;
+  border-radius: .25em;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav a {
+  padding: .25em 1em;
+  margin: .25em;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+
+nav a:visited, a:link {
+  color: #334953;
+}
+nav a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+}
+nav a.active {
+  color: #039be5;
+}
