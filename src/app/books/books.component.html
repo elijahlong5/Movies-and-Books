@@ -1,0 +1,9 @@
+<h2>Books</h2>
+<div>Below is a book tracker to remember what books have been read or listened to.</div>
+
+<ul class="books">
+  <li *ngFor="let b of books" class="book">
+    {{ b.title }} by {{ b.author }}-- <span *ngIf="b.read; then thenBlock"></span>
+    <ng-template #thenBlock>📖</ng-template>
+  </li>
+</ul>

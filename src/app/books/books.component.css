@@ -1,0 +1,14 @@
+li.book {
+  list-style-type: none;
+  margin: .2em;
+  padding: .2em;
+  font-size: 1em;
+  font-family: sans-serif;
+}
+
+ul {
+  padding: 0;
+  margin: 1em;
+  border-radius: .3em;
+  border: solid #039be5;
+}
