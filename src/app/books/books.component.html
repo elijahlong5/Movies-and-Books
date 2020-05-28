@@ -1,9 +1,28 @@
 <h2>Books</h2>
 <div>Below is a book tracker to remember what books have been read or listened to.</div>
-
+<div class="button-container">
+  <button title="sort by title" (click)="sortBy('title')">Sort by Title</button>
+  <button title="sort by author" (click)="sortBy('author')">Sort by Author</button>
+  <button title="sort by read" (click)="sortBy('read')">Sort by Read</button>
+  <button title="sort by listened to" (click)="sortBy('listened_to')">Sort by Listened To</button>
+</div>
+<div>
+  <label>Add a book:
+    <input #movieTitle />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button>
+    add
+  </button>
+</div>
 <ul class="books">
   <li *ngFor="let b of books" class="book">
-    {{ b.title }} by {{ b.author }}-- <span *ngIf="b.read; then thenBlock"></span>
-    <ng-template #thenBlock>📖</ng-template>
+    {{ b.title }} by {{ b.author }}—
+    <span *ngIf="b.read || b.listened_to; then showCheck"></span>
+    <ng-template #showCheck> ✅</ng-template>
+    <span *ngIf="b.read; then showBook"></span>
+    <ng-template #showBook> 📖</ng-template>
+    <span *ngIf="b.listened_to; then showHeadphone"></span>
+    <ng-template #showHeadphone> 🎧</ng-template>
   </li>
 </ul>

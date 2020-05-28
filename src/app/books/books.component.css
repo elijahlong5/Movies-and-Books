@@ -12,3 +12,20 @@ ul {
   border-radius: .3em;
   border: solid #039be5;
 }
+
+.button-container {
+  width: fit-content;
+  margin: auto;
+}
+
+button {
+  font: inherit;
+  background: cornflowerblue;
+  border: 1px solid cornflowerblue;
+  color: white;
+  cursor: pointer;
+  margin: auto;
+  padding: .25rem .5rem;
+  font-size: 1rem;
+  border-radius: .5em;
+}

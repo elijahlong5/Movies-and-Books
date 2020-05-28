@@ -34,7 +34,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // the method below returns the initial number (11).
   // if the movie array is not empty, the method below returns the highest
   // movie id + 1.
-  genId<T extends Movie | Book>(myTable: T[]): number {
+  genId<T extends Movie | Book >(myTable: T[]): number {
     return myTable.length > 0 ? Math.max(...myTable.map(t => t.id)) + 1 : 11;
   }
 }
