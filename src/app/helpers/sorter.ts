@@ -1,20 +1,35 @@
 export class Sorter{
-  // Reverse is true if the sorter only needs to reverse the list.
-  private reversed: boolean;
+  // reverseList is true if the sorter only needs to reverse the list.
+  private reverseList: boolean;
+  // isReversed reflects the list orientation.
+  private isReversed: boolean;
+  // How the list is sorted.
   private activeSort: string;
   constructor() {
-    this.reversed = false;
+    this.reverseList = false;
+    this.isReversed = false;
     this.activeSort = '';
   }
+
   reverseManager(sortName) {
     if (sortName !== this.activeSort) {
       // Sorting a new way
-      this.reversed = false;
+      this.reverseList = false;
+      this.isReversed = false;
       this.activeSort = sortName;
     } else {
-      // Sorting the same way, just reversed.
-      this.reversed = true;
+      // Sorting the same way, just reverseList.
+      this.isReversed = !this.isReversed;
+      this.reverseList = true;
     }
+  }
+
+  getArrow(){
+    return (this.isReversed ? '↓' : '↑');
+  }
+
+  getActiveSort(){
+    return this.activeSort;
   }
 
   sort(listToSort, sortBy){
@@ -22,9 +37,9 @@ export class Sorter{
      * String
      * Boolean
     * */
-    // Just return reversed list if that's all that needs to happen.
+    // Just return reverseList list if that's all that needs to happen.
     this.reverseManager(sortBy);
-    if (this.reversed){ return listToSort.reverse(); }
+    if (this.reverseList){ return listToSort.reverse(); }
 
     // Assuming that the list has at least one element in it.
     // Assuming all elements are the same type.
@@ -41,10 +56,7 @@ export class Sorter{
         return (a[sortBy] === b[sortBy])? 0 : a[sortBy]? -1 : 1;
       });
     }
-
-
   }
-
 }
 
 const sorter = new Sorter();
