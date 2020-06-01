@@ -2,8 +2,10 @@
 <div>Below is a book tracker to remember what books have been read or listened to.</div>
 <div class="button-container">
   Sort By:
-  <button *ngFor="let b of sortByButtons" (click)="sortBy(b.keyVal)">{{b.name}}
-    <span *ngIf="getActiveSort() == b.keyVal">{{sorter.getArrow()}}</span>
+  <button *ngFor="let b of sortByButtons" (click)="sortBy(b.keyVal)"
+          [classList]="getActiveSort() == b.keyVal ? 'showArrow':''">
+    {{b.name}}
+    <span>{{sorter.getArrow()}}</span>
   </button>
 </div>
 <div>
