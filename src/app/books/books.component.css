@@ -6,6 +6,11 @@ li.book {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 ul {
   padding: 0;
   margin: 1em;
@@ -37,6 +42,7 @@ button, button>span {
   transition: all .25s;
   overflow: hidden;
 }
+
 button.showArrow {
   padding-right: 20px;
 }

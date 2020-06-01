@@ -13,6 +13,7 @@
     Listened to: <span (click)="toggleListened(book.listened_to)" [class]="book.listened_to ? 'full' : 'opaque' "> 🎧</span>
   </div>
   <div class="button-container">
+    <button (click)="goBack()">BACK</button>
     <button (click)="save()">SAVE</button>
     <button (click)="delete()">DELETE</button>
   </div>

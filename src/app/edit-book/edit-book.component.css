@@ -4,14 +4,6 @@ span.opaque {
 span.full {
   opacity: 1;
 }
-span {
-  transition: All .5s;
-}
-
-.button-container {
-  width: fit-content;
-  margin: auto;
-}
 
 button {
   font: inherit;
@@ -19,7 +11,7 @@ button {
   border: 1px solid cornflowerblue;
   color: white;
   cursor: pointer;
-  margin: auto auto 0 5px;
+  margin: auto auto 5px 5px;
   padding: .25rem .5rem;
   font-size: .8rem;
   border-radius: .5em;

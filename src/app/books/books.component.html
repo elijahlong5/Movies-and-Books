@@ -28,12 +28,14 @@
 
 <ul class="books">
   <li *ngFor="let b of getFilteredBooks()" class="book">
-    {{ b.title }} <span *ngIf="b.author">by {{ b.author }}</span>
-    <span *ngIf="b.read || b.listened_to; then showCheckEmoji"></span>
-    <ng-template #showCheckEmoji>— ✅</ng-template>
-    <span *ngIf="b.read; then showBookEmoji"></span>
-    <ng-template #showBookEmoji> 📖</ng-template>
-    <span *ngIf="b.listened_to; then showHeadphoneEmoji"></span>
-    <ng-template #showHeadphoneEmoji> 🎧</ng-template>
+    <a routerLink="/books/edit/{{b.id}}">
+      {{ b.title }} <span *ngIf="b.author">by {{ b.author }}</span>
+      <span *ngIf="b.read || b.listened_to; then showCheckEmoji"></span>
+      <ng-template #showCheckEmoji>— ✅</ng-template>
+      <span *ngIf="b.read; then showBookEmoji"></span>
+      <ng-template #showBookEmoji> 📖</ng-template>
+      <span *ngIf="b.listened_to; then showHeadphoneEmoji"></span>
+      <ng-template #showHeadphoneEmoji> 🎧</ng-template>
+    </a>
   </li>
 </ul>
