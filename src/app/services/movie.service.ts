@@ -48,14 +48,14 @@ export class MovieService {
     );
   }
 
-  /** DELETE: delete the hero from the server */
+  /** DELETE: delete the movie from the server */
   deleteMovie(movie: Movie | number): Observable<Movie> {
     const id = typeof movie === 'number' ? movie : movie.id;
     const url = `${this.moviesUrl}/${id}`;
 
     return this.http.delete<Movie>(url, this.httpOptions).pipe(
       tap(),
-      catchError(this.handleError<Movie>('deleteHero'))
+      catchError(this.handleError<Movie>('deleteMovie'))
     );
   }
 

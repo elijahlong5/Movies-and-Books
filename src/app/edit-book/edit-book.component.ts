@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {MovieService} from "../services/movie.service";
 import {Location} from "@angular/common";
+import { Book } from "../models/book";
+import {BookService} from "../services/book.service";
 
 @Component({
   selector: 'app-edit-book',
@@ -9,20 +10,47 @@ import {Location} from "@angular/common";
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent implements OnInit {
-  @Input() book: number;
+  @Input() book: Book;
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService,
-    private location: Location
+    private bookService: BookService,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
+    this.getBook();
+  }
+
+  getBook(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.book = id;
+    this.bookService.getBook(id)
+      .subscribe( book => {
+        this.book = book;
+      })
+  }
+
+  addAuthor(a): void {
+    this.book.author = a;
+  }
+  toggleRead(r): void {
+    this.book.read = !r;
+  }
+  toggleListened(l): void {
+    this.book.listened_to = !l;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.bookService.updateBook(this.book)
+      .subscribe(() => this.goBack());
+  }
+
+  delete(): void {
+    this.bookService.deleteBook(this.book)
+      .subscribe(() =>this.goBack());
   }
 }

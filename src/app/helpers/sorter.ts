@@ -59,4 +59,3 @@ export class Sorter{
   }
 }
 
-const sorter = new Sorter();

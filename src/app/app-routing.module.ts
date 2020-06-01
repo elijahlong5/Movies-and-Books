@@ -8,7 +8,7 @@ import {EditBookComponent} from "./edit-book/edit-book.component";
 
 
 const routes: Routes = [
-  { path:'', redirectTo: '/movies', pathMatch:'full' },
+  { path:'', redirectTo: '/books', pathMatch:'full' },
   { path:'detail/:id', component: MovieInfoComponent },
   { path:'movies', component: MoviesComponent },
   { path:'books', component: BooksComponent },

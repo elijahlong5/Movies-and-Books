@@ -22,7 +22,7 @@ export class BookService {
     this.nextId = 65;
   }
 
-  /** Get books from server. **/
+  /** GET books from server. **/
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.booksUrl)
       .pipe(
@@ -30,9 +30,27 @@ export class BookService {
       );
   }
 
+  /** GET specific book from server */
+  getBook(id): Observable<Book>{
+    const url = `${this.booksUrl}/${id}`;
+    return this.http.get<Book>(url)
+      .pipe(
+        catchError(this.handleError<Book>('getBook'))
+      );
+  }
+
+  /** PUT: update book on the server*/
+  updateBook(book: Book): Observable<any> {
+    return this.http.put(this.booksUrl, book, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateBook'))
+    );
+  }
+
+
   /** POST: add a new book to the server */
   addBook(book: Book): Observable<Book> {
     book.id = this.nextId++;
+    book.author = '';
     book.listened_to = false;
     book.read = false;
 
@@ -40,8 +58,16 @@ export class BookService {
       catchError(this.handleError<Book>('addBook'))
     );
   }
+  /** DELETE a book from the server. */
+  deleteBook(book: Book | number): Observable<any> {
+    const id = typeof book === 'number' ? book : book.id;
+    const url = `${this.booksUrl}/${id}`;
 
-
+    return this.http.delete<Book>(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Book>('deleteBook'))
+      );
+  }
 
   /**
    * Handle Http operation that failed.

@@ -1,4 +1,20 @@
-<button (click)="goBack()">back</button>
-<p>
-  {{book}}
-</p>
+<div *ngIf="book">
+  <h2>{{book.title}}<span *ngIf="book.author"> by {{book.author}}</span></h2>
+  <div *ngIf="!book.author">
+    <label>
+      Add author: <input #author required>
+    </label>
+    <button (click)="addAuthor(author.value)">add</button>
+  </div>
+  <div>
+    Read: <span (click)="toggleRead(book.read)" [class]="book.read ? 'full' : 'opaque' "> 📖</span>
+  </div>
+  <div>
+    Listened to: <span (click)="toggleListened(book.listened_to)" [class]="book.listened_to ? 'full' : 'opaque' "> 🎧</span>
+  </div>
+  <div class="button-container">
+    <button (click)="save()">SAVE</button>
+    <button (click)="delete()">DELETE</button>
+  </div>
+</div>
+
