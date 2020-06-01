@@ -24,6 +24,7 @@ export class MoviesComponent implements OnInit {
         this.movies = m;
       });
   }
+
   add(title: string): void {
     title = title.trim();
     if (!title) { return; }

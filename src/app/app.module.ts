@@ -15,6 +15,7 @@ import { BooksComponent } from './books/books.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {MatSelectModule} from "@angular/material/select";
     MoviesComponent,
     MovieInfoComponent,
     BooksComponent,
+    EditBookComponent,
   ],
   imports: [
     BrowserModule,

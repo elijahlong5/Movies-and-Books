@@ -28,7 +28,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 28, title:"The Davinci Code", author:'Dan Brown', read:false, listened_to:false },
       { id: 29, title:"Where the Crawdads Sing", author:'Delia Owens', read:false, listened_to:false },
       { id: 30, title:"1984", author:'George Orwell', read:false, listened_to:false },
-
     ]
     return { movies, books };
   }

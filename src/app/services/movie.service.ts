@@ -41,7 +41,7 @@ export class MovieService {
     );
   }
 
-  /** POST: add a new hero to the server */
+  /** POST: add a new movie to the server */
   addMovie(movie: Movie): Observable<Movie> {
     return this.http.post<Movie>(this.moviesUrl, movie, this.httpOptions).pipe(
       catchError(this.handleError<Movie>('addMovie'))

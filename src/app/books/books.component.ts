@@ -4,6 +4,9 @@ import { BookService } from "../services/book.service";
 
 import { Sorter } from '../helpers/sorter';
 
+import { Router } from '@angular/router';
+import {subscribeOn} from "rxjs/operators";
+
 interface bookDisplayOption {
   value: string;
   viewValue: string;
@@ -26,7 +29,9 @@ export class BooksComponent implements OnInit {
   showTypeList: bookDisplayOption[];
   sortByButtons: sortButton[];
 
-  constructor(private  bookService: BookService) {
+  constructor(
+    private  bookService: BookService,
+    private router: Router) {
     this.showing = 'all'; // Start by displaying all books
     this.showTypeList = [
       {value: 'all', viewValue: 'All'},
@@ -54,7 +59,7 @@ export class BooksComponent implements OnInit {
     this.sorter = new Sorter();
     this.getBooks();
   }
-
+  // API
   getBooks(): void {
     /**
      * Get the book list from book service
@@ -65,6 +70,25 @@ export class BooksComponent implements OnInit {
       });
   }
 
+  addBook(title): void {
+    // Add the book to the backend.
+    title = title.trim();
+    let newId = null;
+    if (!title) { return; }
+    this.bookService.addBook({ title } as Book)
+      .subscribe( newBook => {
+        this.books.push(newBook);
+        newId = newBook.id;
+        if (newId) { return; }
+      },
+        () => { return; },
+        () => {
+          // Navigate to edit book page.
+          this.router.navigate(['/books/edit/' + newId]);
+      });
+  }
+
+  // Sorting and filtering
   getFilteredBooks() {
     if (!this.books){ return []; }
     return this.books.filter(b => {

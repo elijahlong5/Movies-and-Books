@@ -4,6 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Movie} from "../models/movie";
 
 
 @Injectable({
@@ -11,11 +12,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class BookService {
   private booksUrl = 'api/books';
+  private nextId: number;
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.nextId = 65;
+  }
 
   /** Get books from server. **/
   getBooks(): Observable<Book[]> {
@@ -24,6 +29,19 @@ export class BookService {
         catchError(this.handleError<Book[]>('getBooks', []))
       );
   }
+
+  /** POST: add a new book to the server */
+  addBook(book: Book): Observable<Book> {
+    book.id = this.nextId++;
+    book.listened_to = false;
+    book.read = false;
+
+    return this.http.post<Book>(this.booksUrl, book, this.httpOptions).pipe(
+      catchError(this.handleError<Book>('addBook'))
+    );
+  }
+
+
 
   /**
    * Handle Http operation that failed.

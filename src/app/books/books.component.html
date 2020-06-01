@@ -8,23 +8,22 @@
     <span>{{sorter.getArrow()}}</span>
   </button>
 </div>
-<div>
-  <label>Add a book:
-    <input #bookTitle />
+<div class="button-container">
+  <mat-form-field>
+    <mat-label>Show books</mat-label>
+    <mat-select (selectionChange)="changeClient($event.value)">
+      <mat-option *ngFor="let t of showTypeList" [value]="t.value">
+        {{t.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <label>
+    New Book Title: <input #bookTitle>
   </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button>
+  <button (click)="addBook(bookTitle.value)">
     add
   </button>
 </div>
-<mat-form-field>
-  <mat-label>Show books</mat-label>
-  <mat-select (selectionChange)="changeClient($event.value)">
-    <mat-option *ngFor="let t of showTypeList" [value]="t.value">
-      {{t.viewValue}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
 
 
 <ul class="books">
